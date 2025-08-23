@@ -1,11 +1,118 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import group from '../assets/group.jpg'
+import WaterDrop from '../assets/water-drop.svg'
 ---
+<BaseLayout title="Smyrna BBC Stockholm">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        SHINING THE LIGHT OF <br>
+        GOD'S GLORY TO THE WORLD
+      </h1>
+      <p class="hero-text">
+        God's will is for people to be saved! Salvation is the free gift of God. He has prepared it for you!
+      </p>
+      <div class="cta-buttons">
+        <a href="/salvation" class="button cta primary">Check out how to be saved!</a>
+        <a href="/what-we-believe" class="button secondary">Find out our core beliefs!</a>
+      </div>
+      <div class="join-info">
+        <h3>What to expect upon joining:</h3>
+        <ul>
+          <li class="list-element"><WaterDrop /> Uncompromised Biblical teaching</li>
+          <li class="list-element"><WaterDrop /> Close family fellowship</li>
+          <li class="list-element"><WaterDrop /> Solemn, old fashioned worship</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-image">
+      {/* You can replace this with your own image */}
+      <Image src={group} alt="LBBC group picture"/>
+    </div>
+  </section>
+</BaseLayout>
 
-<Layout>
-	<Welcome />
-</Layout>
+<style>
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-color);;
+  }
+
+  .hero-text {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+    color: var(--primary-color);;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .cta-button {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .join-info {
+    margin-top: 2rem;
+  }
+
+  .join-info h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .join-info ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .join-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .join-info li img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .list-element {
+    font-weight: 800;
+  }
+  @media (max-width: 768px) {
+    .hero-section {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+</style>
