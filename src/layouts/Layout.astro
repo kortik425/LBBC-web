@@ -1,22 +1,71 @@
-<!doctype html>
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+</head>
+<body>
+  <Header />
+  <main class="main-content">
+    <slot />
+  </main>
+  <Footer />
+</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  :root {
+    --navy: #1F3A5F;
+    --blue-gray: #3E5C76;
+    --parchment: #F5F1E9;
+    --light-gray: #D9D9D6;
+    --stone: #A0A6A9;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--navy);
+    background-color: var(--parchment);
+  }
+
+  .main-content {
+    padding: 4rem 3rem;
+  }
+
+  .button {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .button.primary {
+    background-color: var(--navy);
+  }
+
+  .button.primary:hover {
+    background-color: var(--blue-gray);
+  }
+
+  .button.secondary {
+    background-color: var(--stone);
+  }
+
+  .button.secondary:hover {
+    background-color: var(--blue-gray);
+  }
 </style>
