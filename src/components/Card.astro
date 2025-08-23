@@ -1,0 +1,37 @@
+---
+const { title, verse, reference } = Astro.props;
+---
+<article class="belief">
+  <h2>{title}</h2>
+  <slot />
+  <blockquote style="width: 55%;">
+    “{verse}” <span>({reference})</span>
+  </blockquote>
+</article>
+
+<style>
+  .belief {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .belief h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  blockquote {
+    margin: 1.5rem 0 0;
+    padding-left: 1rem;
+    border-left: 4px solid var(--primary-color);
+    font-style: italic;
+    color: #555;
+  }
+  blockquote span {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+</style>

@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import beliefs from "../data/beliefs.json";
+
 ---
 
 <Layout title="What We Believe">
@@ -12,89 +15,15 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <section class="beliefs">
-    <article class="belief">
-      <h2>About God</h2>
-      <p>
-        We believe in one Holy, triune God—eternal in three persons: The Father, The Son
-        (Jesus Christ), and The Holy Spirit. Each is co-eternal, co-equal, and co-identical
-        in nature, yet carrying distinct but harmonious roles in salvation.  
-      </p>
-      <blockquote>
-        “Hear, O Israel: The LORD our God is one LORD.” <span>(Deut. 6:4)</span>
-      </blockquote>
-    </article>
-
-    <article class="belief">
-      <h2>About the Bible</h2>
-      <p>
-        We believe the Bible is the holy, infallible, preserved, and perfect Word of God—
-        the only absolute authority for doctrine and living.  
-      </p>
-      <p>
-        We hold to the King James Bible as the best preserved Word of God for English-speaking
-        people, rejecting modern versions that introduce corruption and doctrinal error.  
-      </p>
-      <blockquote>
-        “The words of the LORD are pure words...” <span>(Psalm 12:6–7)</span>
-      </blockquote>
-    </article>
-
-    <article class="belief">
-      <h2>About Salvation</h2>
-      <p>
-        Man is sinful by nature and cannot be saved by works. Salvation is the free gift of God,
-        given by grace through faith in the death, burial, and resurrection of Jesus Christ.  
-        Once saved, a believer is eternally secure in Christ.  
-      </p>
-      <blockquote>
-        “For by grace are ye saved through faith...” <span>(Eph. 2:8–9)</span>
-      </blockquote>
-    </article>
-
-    <article class="belief">
-      <h2>About the Church</h2>
-      <p>
-        The church is both the body of Christ (all believers) and the local congregation of
-        baptized believers. Jesus is its founder and head.  
-      </p>
-      <p>
-        We believe in two ordinances: baptism and the Lord’s Supper—acts of obedience and
-        remembrance, not salvation.  
-      </p>
-      <blockquote>
-        “Go ye therefore, and teach all nations, baptizing them...” <span>(Matt. 28:19)</span>
-      </blockquote>
-    </article>
-
-    <article class="belief">
-      <h2>About Dispensation</h2>
-      <p>
-        We believe the Scriptures must be rightly divided, recognizing God’s dealings with
-        mankind in different ages.  
-      </p>
-      <p>
-        We reject teachings that bind the church under the Mosaic law, replace Israel, or
-        place the church in the Tribulation.  
-      </p>
-      <blockquote>
-        “Study to shew thyself approved unto God...” <span>(2 Tim. 2:15)</span>
-      </blockquote>
-    </article>
-
-    <article class="belief">
-      <h2>About Witnessing</h2>
-      <p>
-        We believe it is every Christian’s responsibility to share the Gospel and fulfill the
-        Great Commission through soul-winning, missions, and personal testimony.  
-      </p>
-      <p>
-        It is the Holy Spirit—not persuasion—that convicts and saves. We are simply called
-        to faithfully proclaim Christ.  
-      </p>
-      <blockquote>
-        “Go ye into all the world, and preach the gospel...” <span>(Mark 16:15)</span>
-      </blockquote>
-    </article>
+   {beliefs.map((belief) => (
+    <Card 
+      title={belief.title} 
+      verse={belief.verse} 
+      reference={belief.reference}
+    >
+      <Fragment set:html={belief.text} />
+    </Card>
+  ))}
   </section>
 
   <section class="closing">
@@ -109,8 +38,8 @@ import Layout from '../layouts/Layout.astro';
   .hero {
     text-align: center;
     padding: 3rem 1rem;
-    background: var(--background-color);
-    color: var(--primary-color);
+    background: var(--parchment);
+    color: var(--navy);
   }
   .hero h1 {
     font-size: 2.5rem;
@@ -129,35 +58,12 @@ import Layout from '../layouts/Layout.astro';
     max-width: 900px;
     margin: 0 auto;
   }
-  .belief {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  .belief h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  blockquote {
-    margin: 1.5rem 0 0;
-    padding-left: 1rem;
-    border-left: 4px solid var(--primary-color);
-    font-style: italic;
-    color: #555;
-  }
-  blockquote span {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: var(--primary-color);
-  }
+
 
   .closing {
     text-align: center;
     padding: 3rem 1rem;
-    background: var(--primary-color);
+    background: var(--navy);
     color: white;
   }
 </style>
