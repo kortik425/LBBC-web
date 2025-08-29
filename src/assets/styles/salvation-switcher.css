@@ -1,5 +1,6 @@
 .salvation-switcher {
   padding: 1.5rem;
+  margin-top: 1rem;
 }
 
 .lang-buttons {
@@ -30,12 +31,12 @@
 
 .content {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 1.5rem;
   border: 1px solid #ddd;
   padding: 1rem;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 @media (min-width: 768px) {
