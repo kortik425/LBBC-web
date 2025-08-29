@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/logo-lbbc.png'
+import { Image } from "astro:assets";
+import logo from "../assets/logo-lbbc.png";
 ---
 
 <header class="header">
@@ -40,9 +40,16 @@ import logo from '../assets/logo-lbbc.png'
     background-color: var(--navy);
   }
 
-  .logo {position: absolute; top: 1rem; left: 1rem;}
+  .logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
 
-  .logo img {height: 100px; width: 100px; }
+  .logo img {
+    height: 100px;
+    width: 100px;
+  }
 
   /* Desktop nav */
   .main-nav ul {
@@ -60,8 +67,8 @@ import logo from '../assets/logo-lbbc.png'
     white-space: nowrap;
     transition: color 0.3s ease;
   }
-  .main-nav a:hover { 
-    color: var(--light-gray); 
+  .main-nav a:hover {
+    color: var(--navy);
     text-decoration: underline;
   }
 
@@ -77,19 +84,23 @@ import logo from '../assets/logo-lbbc.png'
 
   /* --- Mobile styles --- */
   @media (max-width: 768px) {
-    .header { padding: 1rem 1.25rem; }
+    .header {
+      padding: 1rem 1.25rem;
+    }
 
-    .menu-toggle { display: block; }
+    .menu-toggle {
+      display: block;
+    }
 
     .main-nav {
       position: absolute;
-      top: 64px;          /* just below header */
+      top: 64px; /* just below header */
       right: 0;
       left: 0;
       background-color: var(--light-gray);
-      display: none;      /* hidden by default on mobile */
+      display: none; /* hidden by default on mobile */
       padding: 1rem 1.25rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     .main-nav ul {
       flex-direction: column;
@@ -105,15 +116,15 @@ import logo from '../assets/logo-lbbc.png'
 
 <script>
   // Tiny vanilla JS to toggle the mobile menu
-  const btn = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('primary-nav');
+  const btn = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("primary-nav");
 
   if (btn && nav) {
-    btn.addEventListener('click', () => {
-      const isCollapsed = nav.getAttribute('data-collapsed') !== 'false';
-      
-      nav.setAttribute('data-collapsed', isCollapsed ? 'false' : 'true');
-      btn.setAttribute('aria-expanded', String(isCollapsed));
+    btn.addEventListener("click", () => {
+      const isCollapsed = nav.getAttribute("data-collapsed") !== "false";
+
+      nav.setAttribute("data-collapsed", isCollapsed ? "false" : "true");
+      btn.setAttribute("aria-expanded", String(isCollapsed));
     });
   }
 </script>

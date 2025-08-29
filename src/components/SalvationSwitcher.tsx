@@ -4,13 +4,16 @@ import languages from "../data/salvation.json";
 
 export type LangKey = keyof typeof languages;
 
-export default function SalvationSwitcher() {
+const SalvationSwitcher = () => {
   // 1. Function to get initial language from URL
   const getInitialLang = (): LangKey => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const langParam = params.get("lang");
-      if (langParam && (Object.keys(languages) as LangKey[]).includes(langParam as LangKey)) {
+      if (
+        langParam &&
+        (Object.keys(languages) as LangKey[]).includes(langParam as LangKey)
+      ) {
         return langParam as LangKey;
       }
     }
@@ -59,3 +62,5 @@ export default function SalvationSwitcher() {
     </section>
   );
 }
+
+export default SalvationSwitcher;

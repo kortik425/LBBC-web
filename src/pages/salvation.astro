@@ -1,9 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 import SalvationSwitcher from "../components/SalvationSwitcher";
-import "../assets/styles/salvation-switcher.css"
+import "../assets/styles/salvation-switcher.css";
 ---
 
-<Layout title="Bible’s Way to Heaven">
+<PageLayout
+  title="Bible’s Way to Heaven"
+  content="The most important question you have to answer is where are you going to spend eternity after this life?"
+>
   <SalvationSwitcher client:load />
-</Layout>
+</PageLayout>

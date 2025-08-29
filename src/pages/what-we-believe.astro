@@ -1,35 +1,36 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 import beliefs from "../data/beliefs.json";
-
 ---
 
 <Layout title="What We Believe">
   <section class="hero">
     <h1>What We Believe</h1>
     <p>
-      Our faith is grounded in the Word of God. Below you’ll find the core beliefs
-      that shape who we are and what we do as a church family.
+      Our faith is grounded in the Word of God. Below you’ll find the core
+      beliefs that shape who we are and what we do as a church family.
     </p>
   </section>
 
   <section class="beliefs">
-   {beliefs.map((belief) => (
-    <Card 
-      title={belief.title} 
-      verse={belief.verse} 
-      reference={belief.reference}
-    >
-      <Fragment set:html={belief.text} />
-    </Card>
-  ))}
+    {
+      beliefs.map((belief) => (
+        <Card
+          title={belief.title}
+          verse={belief.verse}
+          reference={belief.reference}
+        >
+          <Fragment set:html={belief.text} />
+        </Card>
+      ))
+    }
   </section>
 
   <section class="closing">
     <p>
-      These statements summarize what we believe the Bible clearly teaches. We encourage you
-      to study the Scriptures and see these truths for yourself.
+      These statements summarize what we believe the Bible clearly teaches. We
+      encourage you to study the Scriptures and see these truths for yourself.
     </p>
   </section>
 </Layout>
@@ -58,7 +59,6 @@ import beliefs from "../data/beliefs.json";
     max-width: 900px;
     margin: 0 auto;
   }
-
 
   .closing {
     text-align: center;
