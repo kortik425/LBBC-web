@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/Layout.astro";
+import Events from "../components/react/Events";
 import { Image } from "astro:assets";
 import group from "../assets/group.jpg";
 import CalendarIcon from '../assets/icons/calendar.svg'
@@ -77,7 +78,8 @@ import WaterDrop from "../assets/water-drop.svg";
       </section>
   </section>
   <section class="events">
-    
+    <header class="location-header"><LocationIcon width={24} height={24} class="location-icon" /> <h3>Events</h3></header>
+    <Events />
   </section>
 </BaseLayout>
 
