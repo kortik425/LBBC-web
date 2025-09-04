@@ -1,6 +1,5 @@
-// src/components/SalvationSwitcher.tsx
 import { useState, useEffect } from "react";
-import languages from "../data/salvation.json";
+import languages from "../../data/salvation.json";
 
 export type LangKey = keyof typeof languages;
 

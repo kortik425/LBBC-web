@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, use } from "react";
-import useSwipe from "../../hooks/useSwipeDetection";
-import useScrollDetection from "../../hooks/useScrollDetection";
+import { useState } from "react";
+import useScrollAndSwipeDetection from "../../hooks/useScrollAndSwipeDetection";
 import logo from "../../assets/logo-lbbc.png"; 
 import "../../assets/styles/header.css"; // Move styles to Header.css or use CSS-in-JS
 
@@ -18,8 +17,7 @@ const Header = () => {
     const onSwipeUp = () => setIsHeaderVisible(!collapsed);
     const onSwipedown = () => setIsHeaderVisible(true);
 
-    useSwipe(onSwipeUp, onSwipedown);
-    useScrollDetection(onSwipeUp, onSwipedown);
+    useScrollAndSwipeDetection(onSwipeUp, onSwipedown);
     return (
         <header className={`header ${isHeaderVisible ? "" : "header-hidden"}`}>
             <div className="logo">
