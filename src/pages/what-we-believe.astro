@@ -1,18 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 import Card from "../components/Card.astro";
 import beliefs from "../data/beliefs.json";
 ---
 
-<Layout title="What We Believe">
-  <section class="hero">
-    <h1>What We Believe</h1>
-    <p>
-      Our faith is grounded in the Word of God. Below you’ll find the core
-      beliefs that shape who we are and what we do as a church family.
-    </p>
-  </section>
-
+<PageLayout 
+  title="What We Believe"
+  content="Our faith is grounded in the Word of God. Below you’ll find the core beliefs that shape who we are and what we do as a church family.">
   <section class="beliefs">
     {
       beliefs.map((belief) => (
@@ -33,25 +27,9 @@ import beliefs from "../data/beliefs.json";
       encourage you to study the Scriptures and see these truths for yourself.
     </p>
   </section>
-</Layout>
+</PageLayout>
 
 <style>
-  .hero {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: var(--parchment);
-    color: var(--navy);
-  }
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
   .beliefs {
     display: grid;
     gap: 2rem;
