@@ -60,6 +60,6 @@ const SalvationSwitcher = () => {
       </article>
     </section>
   );
-}
+};
 
 export default SalvationSwitcher;

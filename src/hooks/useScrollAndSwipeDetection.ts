@@ -6,7 +6,7 @@ const ANGLE_THRESHOLD = 30; // degrees
 
 const useScrollAndSwipeDetection = (
   onScrollUp: () => void,
-  onScrollDown: () => void
+  onScrollDown: () => void,
 ) => {
   const lastScrollY = useRef(0);
 
@@ -17,7 +17,7 @@ const useScrollAndSwipeDetection = (
 
   useEffect(() => {
     const handleScroll = () => {
-      if (gestureTriggered.current) return; 
+      if (gestureTriggered.current) return;
       const currentY = window.scrollY;
       const deltaY = currentY - lastScrollY.current;
 
@@ -63,7 +63,7 @@ const useScrollAndSwipeDetection = (
       const isLongEnough = absDeltaY > SWIPE_SCROLL_THRESHOLD;
 
       if (isVertical && isFast && isLongEnough) {
-        console.log('entra');
+        console.log("entra");
         if (deltaY > 0) {
           onScrollUp();
         } else {
