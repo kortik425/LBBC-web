@@ -1,18 +1,54 @@
 ---
-
+import FbIcon from "../assets/icons/fb.svg";
+import YtIcon from "../assets/icons/yt.svg";
 ---
 
 <footer class="footer">
-  <p>
-    &copy; {new Date().getFullYear()} Smyrna BBC Stockholm. All rights reserved.
-  </p>
-</footer>
+  <div class="footer-content">
+    <section>
+      <h2>Contact Us</h2>
+      <p>
+        Smyrna BBC Stockholm<br />
+        Vallhornsvägen 8 142 32 Skogås, Stockholm Sweden<br />
+        Phone: +46 (0)70 887 9295 <br />
+        Email: info@smyrnabbc.com
+      </p>
+      <section>
+        <h2>Follow Us</h2>
+        <div>
+          <a href="#"><FbIcon width={56} height={56} /></a>
+          <a href="#"><YtIcon width={56} height={56} /></a>
+        </div>
+      </section>
+    </section>
+    <p>
+      &copy; {new Date().getFullYear()} Smyrna BBC Stockholm. All rights reserved.
+    </p>
+  </div>
 
-<style>
-  .footer {
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--navy);
-    color: white;
-  }
-</style>
+  <style>
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--navy);
+      color: white;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+    section a {
+      color: var(--parchment);
+    }
+  </style>
+
+  <script type="module" is:inline>
+    const user = "{user}";
+    const domain = "{domain}";
+    const subject = "{subject}";
+    const emailLink = `mailto:${user}@${domain}?subject=${encodeURIComponent(subject)}`;
+    document.getElementById("email-link").setAttribute("href", emailLink);
+  </script>
+</footer>
