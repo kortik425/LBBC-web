@@ -1,0 +1,108 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../assets/styles/salvation-switcher.css";
+---
+
+<PageLayout
+  title="Prayer Requests"
+  content={`Let us pray for you! 
+  “Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God.”
+(Philippians 4:6)`}
+>
+  <section class="prayer-request-section">
+    <h2>Submit Your Prayer Request</h2>
+    <form id="prayer-form" class="prayer-request-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Prayer Request:</label>
+      <textarea id="message" name="message" rows="6" required minlength="11"></textarea>
+      <input type="text" name="hp-email" value="" style="display: none;" aria-hidden="true" tabindex="-1" autocomplete="off" />
+      <button type="submit" class="button" style="background-color: var(--navy);">
+        Submit
+      </button>
+
+      <div id="form-message" role="status" aria-live="polite" class="form-message" hidden></div>
+    </form>
+
+    <script>
+  import { actions } from 'astro:actions';
+  
+  const form = document.getElementById('prayer-form') as HTMLFormElement;
+  const msg = document.getElementById('form-message')!;
+
+  const displayMessage = (message: string | null, isSuccess = false) => {
+    msg.textContent = message;
+    msg.hidden = false;
+    msg.className = isSuccess ? 'form-message success' : 'form-message error';
+  };
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.hidden = true;
+      
+      const formData = new FormData(form);
+      const {data, error} = await actions.submitPrayerRequest(formData);
+
+      if (data?.success) {
+        displayMessage("🙏 Your prayer request has been submitted. Thank you!", true);
+        form.reset(); 
+      } else {
+        displayMessage(error?.message || "An unexpected error occurred.", false);
+      }  
+    });
+  }
+</script>
+  </section>
+</PageLayout>
+
+<style>
+  .prayer-request-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: var(--parchment);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .prayer-request-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .prayer-request-form label {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  .prayer-request-form input,
+  .prayer-request-form textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--stone);
+    border-radius: var(--radius);
+    font-size: 1rem;
+  }
+  .prayer-request-form button {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+  .form-message {
+    margin-top: 1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .form-message.success {
+    background: rgba(46, 125, 50, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.15);
+  }
+  .form-message.error {
+    background: rgba(211, 47, 47, 0.06);
+    color: #d32f2f;
+    border: 1px solid rgba(211, 47, 47, 0.12);
+  }
+</style>
