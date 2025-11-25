@@ -43,12 +43,4 @@ import YtIcon from "../assets/icons/yt.svg";
       color: var(--parchment);
     }
   </style>
-
-  <script type="module" is:inline>
-    const user = "{user}";
-    const domain = "{domain}";
-    const subject = "{subject}";
-    const emailLink = `mailto:${user}@${domain}?subject=${encodeURIComponent(subject)}`;
-    document.getElementById("email-link").setAttribute("href", emailLink);
-  </script>
 </footer>
