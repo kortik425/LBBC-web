@@ -8,10 +8,10 @@ import YtIcon from "../assets/icons/yt.svg";
     <section>
       <h2>Contact Us</h2>
       <p>
-        Smyrna BBC Stockholm<br />
+        Northern Lighthouse BBC Stockholm<br />
         Vallhornsvägen 8 142 32 Skogås, Stockholm Sweden<br />
         Phone: +46 (0)70 887 9295 <br />
-        Email: info@smyrnabbc.com
+        <span id="email"></span>
       </p>
       <section>
         <h2>Follow Us</h2>
@@ -22,10 +22,13 @@ import YtIcon from "../assets/icons/yt.svg";
       </section>
     </section>
     <p>
-      &copy; {new Date().getFullYear()} Smyrna BBC Stockholm. All rights reserved.
+      &copy; {new Date().getFullYear()} Northern Lighthouse Bible Baptist Church Stockholm. All rights reserved.
     </p>
   </div>
-
+  <script>
+      (document.getElementById("email")!).textContent =
+      "stockholm" + "@" + "smyrnabbc.com";
+  </script>
   <style>
     .footer {
       text-align: center;
