@@ -1,0 +1,174 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import hasselby from "../assets/pictures/hasselby.webp";
+import solna from "../assets/pictures/solna.webp";
+import organization from "../assets/pictures/organization.webp"; 
+import family from "../assets/pictures/family.webp";
+---
+
+<style>
+  /* Mobile-first base styles */
+  :root{
+    --container-padding: 1rem;
+    --max-width: 900px;
+    --heading-size: 1.5rem;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+  }
+
+  header.page-header {
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.25rem 0;
+  }
+
+  p.lead {
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+  }
+
+  section {
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Simple responsive image utility */
+  img.responsive {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  /* Grid used for image layouts and two-column content */
+  .grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .images-1 { grid-template-columns: 1fr; }
+  .images-2 { grid-template-columns: 1fr; }
+
+  /* Pastor section: stack on mobile */
+  .pastor {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .family-photo { text-align: center; }
+
+  .muted {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  /* Desktop breakpoint */
+  @media (min-width: 768px) {
+    :root{ --heading-size: 2rem; }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+
+    .images-1 { grid-template-columns: 1fr 1fr; }
+    .images-2 { grid-template-columns: 1fr 1fr; }
+
+    /* make the pastor section two columns with the photo on the right */
+    .pastor {
+      grid-template-columns: 1fr 320px;
+      align-items: start;
+    }
+
+    .family-photo { text-align: right; }
+  }
+</style>
+
+<PageLayout title="About us" content="Northern Lighthouse Bible Baptist Church — our story and leadership">
+  <main>
+    <header class="page-header" role="banner">
+      <h1>Northern Lighthouse Bible Baptist Church</h1>
+      <p class="lead">A local, Bible-believing church serving the Stockholm area — rooted in mission, committed to the Gospel.</p>
+    </header>
+
+    <section aria-labelledby="beginning">
+      <h2 id="beginning">Our Beginning</h2>
+      <div class="text">
+        Northern Lighthouse began in 2017 as a mission from Smyrna Bible Baptist Church of Milan. For the first years we met in the home of a brother, worshipping and growing together as a small congregation. Those humble beginnings shaped our commitment to faithful Bible teaching and close fellowship.
+      </div>
+      <div class="grid images-1" aria-hidden="true">
+        <figure>
+          <img class="responsive" src={hasselby.src} alt="Church members meeting in a home - placeholder" />
+          <figcaption class="muted">Early house meetings </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="moves">
+      <h2 id="moves">Moving and Growing</h2>
+      <div class="text">
+        After our first years we spent a season meeting in different locations around the city. For about a year we moved between Bromma and Norsborg, then we worshipped and ministered in Solna for two years. In time God led us to Skogås, where the church continues today. These moves reflect the resilience of the congregation and our desire to be where people need the Gospel.
+      </div>
+      <div class="grid images-2">
+        <figure>
+          <img class="responsive" src={solna.src} alt="Church meeting at Solna" />
+          <figcaption class="muted">Our home church in Solna for 2 years</figcaption>
+        </figure>
+        <figure>
+          <img class="responsive" src="/images/about/move2-placeholder.jpg" alt="Church gathering in Solna/Skogås - placeholder" />
+          <figcaption class="muted">Times in Solna and Skogås (placeholder)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="organization">
+      <h2 id="organization">Becoming a Local Church</h2>
+      <div class="text">
+        On <strong>12 October 2025</strong> we were organised as an independent local church under the name <em>Northern Lighthouse Bible Baptist Church</em>. The name reflects our calling: our members recognised a need for an uncompromised, Bible-believing congregation — a place of refuge and faithful teaching. At the same time we desire to be a beacon for the lost, holding forth the light of the Gospel in our community.
+      </div>
+      <div class="grid images-1" aria-hidden="true">
+        <figure>
+          <img class="responsive" src={organization.src} alt="Church organised as Northern Lighthouse Bible Baptist Church - placeholder" />
+          <figcaption class="muted">Official organisation (placeholder)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="pastor">
+      <h2 id="pastor">About the Pastor</h2>
+
+      <div class="pastor">
+        <article>
+          <p class="text"><strong>Gian Carlo Bandril</strong> was ordained on <strong>11 October 2025</strong>. He has served as a missionary preacher since 2019 and currently serves as a tentmaking pastor while completing Bible School studies toward a Bachelor's degree in Theology. Gian Carlo seeks to preach faithfully from Scripture and to shepherd the congregation with a heart for missions and biblical conviction.</p>
+
+          <p class="text">Gian Carlo is married to <strong>Angelica Bandril</strong> (married 2020). The Lord has blessed them with a son, <strong>Tobias</strong>, born in 2022.</p>
+
+          <address class="muted">For ministry enquiries, please contact the church office.</address>
+        </article>
+
+        <aside class="family-photo" aria-label="Pastor's family photo">
+          <img class="responsive" src={family.src} alt="Gian Carlo, Angelica, and their son Tobias - family photo placeholder" />
+          <div class="muted">The Bandril family (placeholder)</div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+</PageLayout>
