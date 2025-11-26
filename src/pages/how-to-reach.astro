@@ -1,0 +1,55 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import SalvationSwitcher from "../components/react/SalvationSwitcher";
+import "../assets/styles/salvation-switcher.css";
+---
+
+<PageLayout
+  title="How to reach us"
+  content="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+>
+  <div class="location-section">
+  <section class="how-to-reach">
+    <h2>By Public Transport</h2>
+    <p>
+      Take the commuter train (Pendeltåg) towards Nynäshamn and get off at
+      Skogås station. </br> From there, it's about a 10-minute walk to the church.
+    </p>
+    <h2>By Car</h2>
+    <p>
+      If you're driving, you can use the following address for your GPS: Vallhornsvägen 8,
+      142 32 Skogås, Stockholm. 
+    </br> There are parking spaces in Österleden 11 and Östra Grundskolan near the church. 
+    </br>They aren't free so remember to pay through Parkster or EasyPark apps.
+    </p>
+  </section>
+   <iframe
+        class="location-content"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2042.0667629209668!2d18.14537527669999!3d59.21489902017553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9dae0722d67b%3A0x165a643e34141b71!2sSmyrna%20Bible%20Baptist%20Church%20-%20Stockholm%20mission!5e0!3m2!1sen!2sse!4v1756428667096!5m2!1sen!2sse"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+</PageLayout>
+
+<style>
+  .how-to-reach {
+    max-width: 900px;
+  }
+  .location-content {
+    border-radius: var(--radius);
+    border: 0;
+    height: 400px;
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .location-section {
+      display: flex;
+    }
+    .location-content{
+      flex: 1;
+      min-width: 500px;
+      margin-inline: 32px;
+    }
+  }
+</style>
