@@ -1,0 +1,43 @@
+[
+  {
+    "id": "beginning",
+    "title": "Our Beginning",
+    "text": "Northern Lighthouse began in 2017 as Smyrna Bible Baptist Mission - a mission extension from Smyrna Bible Baptist Church of Milan under the leadership of pastor Andy Mananon. For the first years we met in the home of a brother, worshipping and growing together as a small congregation. Those humble beginnings strengthen our close fellowship and desire to grow and spread the Gospel.",
+    "images": [
+      {
+        "src_var": "hasselby.src",
+        "alt": "Church members meeting in a home - placeholder",
+        "caption": "Early house meetings"
+      }
+    ]
+  },
+  {
+    "id": "moves",
+    "title": "Moving and Growing",
+    "text": "After our first years we spent a season meeting in different locations around the city. We moved to different places near Bromma and for about a year we had a place in Norsborg. Finally we worshipped and ministered in Solna for two years where we experienced a considerable growth. In time God led us to Skogås, where the church continues today.",
+    "images": [
+      {
+        "src_var": "solna.src",
+        "alt": "Church meeting at Solna",
+        "caption": "Our home church in Solna for 2 years"
+      },
+      {
+        "src": "/images/about/move2-placeholder.jpg",
+        "alt": "Church gathering in Solna/Skogås - placeholder",
+        "caption": "Times in Solna and Skogås (placeholder)"
+      }
+    ]
+  },
+  {
+    "id": "organization",
+    "title": "Becoming a Local Church",
+    "text": "On 12 October 2025 we were organised as an independent local church under the name Northern Lighthouse Bible Baptist Church. The name reflects our calling: our members recognised a need for an uncompromised, Bible-believing congregation — a place of refuge and faithful teaching. At the same time we desire to be a beacon for the lost, holding forth the light of the Gospel in our community.",
+    "images": [
+      {
+        "src_var": "organization.src",
+        "alt": "Church organised as Northern Lighthouse Bible Baptist Church - placeholder",
+        "caption": "Official organisation (placeholder)"
+      }
+    ]
+  }
+]

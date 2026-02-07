@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import events from "../../data/events.json";
-import evangel from "../../assets/evangelistic 3.png";
-import temp from "../../assets/temp-camp.png";
+// import evangel from "../../assets/evangelistic 3.png";
+// import temp from "../../assets/temp-camp.png";
 
 const Events = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
-      {events.map((churchEvent, i) => (
+      {/* {events.map((churchEvent, i) => (
         <div
           style={{
             width: 600,
@@ -15,7 +15,7 @@ const Events = () => {
             backgroundSize: "cover",
           }}
         ></div>
-      ))}
+      ))} */}
     </div>
   );
 };

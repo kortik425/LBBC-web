@@ -1,0 +1,181 @@
+---
+import Image from "astro/components/Image.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+import hasselby from "../assets/pictures/hasselby.webp";
+import solna from "../assets/pictures/solna.webp";
+import organization from "../assets/pictures/organization.webp"; 
+import family from "../assets/pictures/family.webp";
+import aboutUs from "../data/about-us.json";
+
+type ImageMap = {
+  [key: string]: ImageMetadata; // ImageMetadata is the type for imported Astro images
+};
+
+const imageMap: ImageMap = {
+  'hasselby.src': hasselby,
+  'solna.src': solna,
+  'organization.src': organization,
+};
+
+// Helper function to get the correct source for the Image component
+const getImgSrc = (img: {src: string, src_var?:string, alt: string, caption: string}) : ImageMetadata | string => {
+  if (img.src_var) {
+    return imageMap[img.src_var];
+  }
+  return img.src; // Fallback for standard paths/external URLs
+}
+
+---
+
+<style>
+  /* Mobile-first base styles */
+  :root{
+    --container-padding: 1rem;
+    --max-width: 900px;
+    --heading-size: 1.5rem;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+  }
+  section {
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Simple responsive image utility */
+  img.responsive {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  /* Grid used for image layouts and two-column content */
+  .grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .images-1 { grid-template-columns: 1fr; }
+  .images-2 { grid-template-columns: 1fr; }
+
+  /* Pastor section: stack on mobile */
+  .pastor {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .family-photo { text-align: center; }
+
+  .muted {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  /* Desktop breakpoint */
+  @media (min-width: 768px) {
+    :root{ --heading-size: 2rem; }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+
+    .images-1 { grid-template-columns: 1fr 1fr; }
+    .images-2 { grid-template-columns: 1fr 1fr; }
+
+    /* make the pastor section two columns with the photo on the right */
+    .pastor {
+      grid-template-columns: 1fr 320px;
+      align-items: start;
+    }
+
+    .family-photo { text-align: right; }
+  }
+</style>
+
+<PageLayout title="About us" content="A local, Bible-believing church serving the Stockholm area rooted in mission, committed to the Gospel.">
+  <main>
+    {aboutUs.map((section) => (
+  <section aria-labelledby={section.id}>
+    <h2 id={section.id}>{section.title}</h2>
+    <div class="text">
+      <p>{section.text}</p>
+    </div>
+
+    {/* Conditionally render the image grid */}
+    {section.images && section.images.length > 0 && (
+      <div class={`grid images-${section.images.length}`}>
+        {section.images.map((img, index: number) => {
+          const imgSrc = getImgSrc(img);
+          
+          return (
+  <div>
+              {img.src_var && typeof imgSrc !== 'string' ? (
+                <Image 
+                  // TypeScript now knows imgSrc is of type ImageMetadata here
+                  src={imgSrc} 
+                  alt={img.alt} 
+                  class="responsive"
+                  widths={[300, 600, 900]} 
+                  sizes="(max-width: 600px) 100vw, 50vw" 
+                  loading="lazy"
+                />
+              ) : (
+                /* Fallback to raw <img> for images that are not local assets 
+                   (like the placeholder image that uses a literal string path) 
+                */
+                <img 
+                  class="responsive" 
+                  // TypeScript now knows imgSrc is a string path here
+                  src={imgSrc as string} 
+                  alt={img.alt} 
+                  loading="lazy"
+                />
+              )}
+              
+              <figcaption class="muted">
+                {img.caption}
+              </figcaption>
+            </div>
+          );
+        })}
+      </div>
+    )}
+  </section>
+))}
+
+    <section aria-labelledby="pastor">
+      <h2 id="pastor">About the Pastor</h2>
+
+      <div class="pastor">
+        <article>
+          <p class="text"><strong>Gian Carlo Bandril</strong> was ordained on <strong>11 October 2025</strong>. He has served as a missionary preacher since 2019 and currently serves as a tentmaking pastor while completing Bible School studies toward a Bachelor's degree in Theology. Gian Carlo seeks to preach faithfully from Scripture and to shepherd the congregation with a heart for missions and biblical conviction.</p>
+
+          <p class="text">Gian Carlo is married to <strong>Angelica Bandril</strong> (married 2020). The Lord has blessed them with a son, <strong>Tobias</strong>, born in 2022.</p>
+
+          <address class="muted">For ministry enquiries, please contact the church office.</address>
+        </article>
+
+        <aside class="family-photo" aria-label="Pastor's family photo">
+          <img class="responsive" src={family.src} alt="Gian Carlo, Angelica, and their son Tobias - family photo placeholder" />
+          <div class="muted">The Bandril family (placeholder)</div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+</PageLayout>
