@@ -1,6 +1,5 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import "../assets/styles/salvation-switcher.css";
 ---
 
 <PageLayout
@@ -11,52 +10,7 @@ import "../assets/styles/salvation-switcher.css";
 >
   <section class="prayer-request-section">
     <h2>Submit Your Prayer Request</h2>
-    <form id="prayer-form" class="prayer-request-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="message">Prayer Request:</label>
-      <textarea id="message" name="message" rows="6" required minlength="11"></textarea>
-      <input type="text" name="hp-email" value="" style="display: none;" aria-hidden="true" tabindex="-1" autocomplete="off" />
-      <button type="submit" class="button" style="background-color: var(--navy);">
-        Submit
-      </button>
-
-      <div id="form-message" role="status" aria-live="polite" class="form-message" hidden></div>
-    </form>
-
-    <script>
-  import { actions } from 'astro:actions';
-  
-  const form = document.getElementById('prayer-form') as HTMLFormElement;
-  const msg = document.getElementById('form-message')!;
-
-  const displayMessage = (message: string | null, isSuccess = false) => {
-    msg.textContent = message;
-    msg.hidden = false;
-    msg.className = isSuccess ? 'form-message success' : 'form-message error';
-  };
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.hidden = true;
-      
-      const formData = new FormData(form);
-      const {data, error} = await actions.submitPrayerRequest(formData);
-
-      if (data?.success) {
-        displayMessage("🙏 Your prayer request has been submitted. Thank you!", true);
-        form.reset(); 
-      } else {
-        displayMessage(error?.message || "An unexpected error occurred.", false);
-      }  
-    });
-  }
-</script>
+    <p>We are working to provide a direct contact form. Please feel free to contact us through email.</p>
   </section>
 </PageLayout>
 

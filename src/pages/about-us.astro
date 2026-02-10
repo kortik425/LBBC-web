@@ -1,53 +1,23 @@
 ---
-import Image from "astro/components/Image.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 import hasselby from "../assets/pictures/hasselby.webp";
 import solna from "../assets/pictures/solna.webp";
 import organization from "../assets/pictures/organization.webp"; 
 import family from "../assets/pictures/family.webp";
-import aboutUs from "../data/about-us.json";
-
-type ImageMap = {
-  [key: string]: ImageMetadata; // ImageMetadata is the type for imported Astro images
-};
-
-const imageMap: ImageMap = {
-  'hasselby.src': hasselby,
-  'solna.src': solna,
-  'organization.src': organization,
-};
-
-// Helper function to get the correct source for the Image component
-const getImgSrc = (img: {src: string, src_var?:string, alt: string, caption: string}) : ImageMetadata | string => {
-  if (img.src_var) {
-    return imageMap[img.src_var];
-  }
-  return img.src; // Fallback for standard paths/external URLs
-}
-
+import norsborg from "../assets/pictures/norsborg.webp";
 ---
 
 <style>
   /* Mobile-first base styles */
-  :root{
-    --container-padding: 1rem;
-    --max-width: 900px;
-    --heading-size: 1.5rem;
-  }
-
   main {
-    max-width: var(--max-width);
+    max-width: 900px;
     margin: 0 auto;
-    padding: var(--container-padding);
-  }
+  } 
+
   section {
     margin-bottom: 1.5rem;
   }
 
-  h2 {
-    font-size: 1.25rem;
-    margin: 0 0 0.5rem 0;
-  }
 
   .text {
     font-size: 1rem;
@@ -107,56 +77,50 @@ const getImgSrc = (img: {src: string, src_var?:string, alt: string, caption: str
   }
 </style>
 
-<PageLayout title="About us" content="A local, Bible-believing church serving the Stockholm area rooted in mission, committed to the Gospel.">
+<PageLayout title="About us" content="A local, Bible-believing church serving the Stockholm area — rooted in mission, committed to the Gospel.">
   <main>
-    {aboutUs.map((section) => (
-  <section aria-labelledby={section.id}>
-    <h2 id={section.id}>{section.title}</h2>
-    <div class="text">
-      <p>{section.text}</p>
-    </div>
-
-    {/* Conditionally render the image grid */}
-    {section.images && section.images.length > 0 && (
-      <div class={`grid images-${section.images.length}`}>
-        {section.images.map((img, index: number) => {
-          const imgSrc = getImgSrc(img);
-          
-          return (
-  <div>
-              {img.src_var && typeof imgSrc !== 'string' ? (
-                <Image 
-                  // TypeScript now knows imgSrc is of type ImageMetadata here
-                  src={imgSrc} 
-                  alt={img.alt} 
-                  class="responsive"
-                  widths={[300, 600, 900]} 
-                  sizes="(max-width: 600px) 100vw, 50vw" 
-                  loading="lazy"
-                />
-              ) : (
-                /* Fallback to raw <img> for images that are not local assets 
-                   (like the placeholder image that uses a literal string path) 
-                */
-                <img 
-                  class="responsive" 
-                  // TypeScript now knows imgSrc is a string path here
-                  src={imgSrc as string} 
-                  alt={img.alt} 
-                  loading="lazy"
-                />
-              )}
-              
-              <figcaption class="muted">
-                {img.caption}
-              </figcaption>
-            </div>
-          );
-        })}
+    <section aria-labelledby="beginning">
+      <h2 id="beginning">Our Beginning</h2>
+      <div class="text">
+        Northern Lighthouse began in 2017 as a mission from Smyrna Bible Baptist Church of Milan. For the first years we met in the home of a brother, worshipping and growing together as a small congregation. Those humble beginnings shaped our commitment to faithful Bible teaching and close fellowship.
       </div>
-    )}
-  </section>
-))}
+      <div class="grid images-1" aria-hidden="true">
+        <figure>
+          <img class="responsive" src={hasselby.src} alt="Church members meeting in a home" />
+          <figcaption class="muted">Early house meetings </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="moves">
+      <h2 id="moves">Moving and Growing</h2>
+      <div class="text">
+        After our first years we spent a season meeting in different locations around the city. For about a year we moved between Bromma and Norsborg, then we worshipped and ministered in Solna for two years. In time God led us to Skogås, where the church continues today. These moves reflect the resilience of the congregation and our desire to be where people need the Gospel.
+      </div>
+      <div class="grid images-2">
+        <figure>
+          <img class="responsive" src={solna.src} alt="Church meeting at Solna" />
+          <figcaption class="muted">Our home church in Solna for 2 years</figcaption>
+        </figure>
+        <figure>
+          <img class="responsive" src={norsborg.src} alt="Church gathering in Norsborg" />
+          <figcaption class="muted">Church gathering in Norsborg</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="organization">
+      <h2 id="organization">Becoming a Local Church</h2>
+      <div class="text">
+        On <strong>12 October 2025</strong> we were organised as an independent local church under the name <em>Northern Lighthouse Bible Baptist Church</em>. The name reflects our calling: our members recognised a need for an uncompromised, Bible-believing congregation — a place of refuge and faithful teaching. At the same time we desire to be a beacon for the lost, holding forth the light of the Gospel in our community.
+      </div>
+      <div class="grid images-1" aria-hidden="true">
+        <figure>
+          <img class="responsive" src={organization.src} alt="Church organised as Northern Lighthouse Bible Baptist Church" />
+          <figcaption class="muted">Official organisation</figcaption>
+        </figure>
+      </div>
+    </section>
 
     <section aria-labelledby="pastor">
       <h2 id="pastor">About the Pastor</h2>
@@ -171,8 +135,8 @@ const getImgSrc = (img: {src: string, src_var?:string, alt: string, caption: str
         </article>
 
         <aside class="family-photo" aria-label="Pastor's family photo">
-          <img class="responsive" src={family.src} alt="Gian Carlo, Angelica, and their son Tobias - family photo placeholder" />
-          <div class="muted">The Bandril family (placeholder)</div>
+          <img class="responsive" src={family.src} alt="Gian Carlo, Angelica, and their son Tobias - family photo" />
+          <div class="muted">The Bandril family</div>
         </aside>
       </div>
     </section>
