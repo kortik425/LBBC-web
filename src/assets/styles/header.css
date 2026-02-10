@@ -1,3 +1,4 @@
+/* --- Base Header Styles --- */
 .header {
   position: fixed;
   right: 0;
@@ -13,7 +14,6 @@
 
 .header-hidden {
   transform: translateY(-150%);
-  transition: transform 0.3s ease-in-out;
 }
 
 .logo {
@@ -22,11 +22,13 @@
   left: 1rem;
   z-index: 2;
 }
+
 .logo img {
   height: 100px;
   width: 100px;
 }
 
+/* --- Navigation & Links --- */
 .main-nav > ul {
   list-style: none;
   margin: 0;
@@ -38,7 +40,6 @@
 }
 
 .nav-parent {
-  /* reset button styles */
   cursor: pointer;
   color: inherit;
   background: none;
@@ -57,18 +58,22 @@
   transition: color 0.3s ease;
   color: inherit;
 }
+
+/* Active/Hover states */
 .main-nav a:hover,
 .nav-parent[data-isExpanded="true"] {
   color: var(--navy);
   background-color: #eee;
   text-decoration: underline;
 }
+
 .has-submenu {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
+/* Invisible bridge to prevent menu closing when moving mouse to submenu */
 .has-submenu::before {
   content: "";
   display: block;
@@ -79,9 +84,10 @@
   height: 24px;
 }
 
+/* --- Submenu Logic (The Fix) --- */
 .has-submenu > ul.submenu {
+  display: none; /* Controlled by CSS/State */
   list-style: none;
-  display: flex;
   gap: 8px;
   position: absolute;
   background: var(--navy);
@@ -93,7 +99,24 @@
   z-index: 3;
 }
 
-/* Hamburger hidden on desktop */
+/* DESKTOP HOVER: Only trigger if device has a pointer */
+@media (hover: hover) {
+  .has-submenu:hover > ul.submenu {
+    display: flex;
+  }
+  .has-submenu:hover .nav-parent {
+    color: var(--navy);
+    background-color: #eee;
+    text-decoration: underline;
+  }
+}
+
+/* MOBILE/CLICK TOGGLE: Show when data-open is true */
+.has-submenu > ul.submenu[data-open="true"] {
+  display: flex;
+}
+
+/* --- Hamburger Toggle --- */
 .menu-toggle {
   display: none;
   font-size: 2rem;
@@ -103,7 +126,7 @@
   color: var(--light-gray);
 }
 
-/* --- Mobile styles --- */
+/* --- Mobile Styles (max-width: 768px) --- */
 @media (max-width: 768px) {
   .header {
     padding: 1rem 1.25rem;
@@ -113,12 +136,10 @@
     display: block;
   }
 
-  .menu-toggle > svg > rect:nth-child(1),
-  .menu-toggle > svg > rect:nth-child(2),
-  .menu-toggle > svg > rect:nth-child(3) {
+  /* Hamburger Animation */
+  .menu-toggle > svg > rect {
     transition: all 0.5s ease;
     fill: white;
-    transform: rotate(0deg);
   }
 
   .menu-toggle.is-open > svg > rect:nth-child(1) {
@@ -139,30 +160,44 @@
     right: 0;
     left: 0;
     background-color: var(--navy);
-    display: none; /* hidden by default on mobile */
-    padding: 5rem 1.25rem;
+    display: none;
+    padding: 2rem 1.25rem; /* Reduced padding from 5rem */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
   }
+
+  .main-nav[data-collapsed="false"] {
+    padding-top: 4rem;
+    display: flex;
+  }
+
   .main-nav ul {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
+    width: 100%;
   }
 
-  .main-nav[data-collapsed="false"] {
-    display: flex;
-  }
   .has-submenu {
-    position: relative;
-    display: initial;
+    display: block;
+    /* width: 100%; */
+  }
+
+  .has-submenu::before {
+    display: none;
   }
 
   .has-submenu > ul.submenu {
-    position: initial;
-    box-shadow: unset;
-    padding: 1rem;
-    padding-bottom: 0;
-    gap: 16px;
+    position: static; /* Let it push content down on mobile */
+    box-shadow: none;
+    padding: 0.5rem 1.5rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .has-submenu > .nav-parent {
+    padding-bottom: 0.5rem;
+    width: 100%;
+    text-align: left;
   }
 }

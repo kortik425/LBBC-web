@@ -28,7 +28,7 @@ const navLinks: NavLink[] = [
   { id: "bibleWayToHeaven", href: "/salvation", label: "Bible way to Heaven" },
   { id: "materials", href: "/materials", label: "Materials" },
   { id: "prayerRequests", href: "/prayer-requests", label: "Prayer Requests" },
-  { id: "give", href: "/give", label: "Give" },
+  // { id: "give", href: "/give", label: "Give" },
 ];
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
         <a href="/">
           <img
             src={logo.src}
-            alt="Smyrna BBC Stockholm Logo"
+            alt="Northern Lighthouse BBC Stockholm Logo"
             width={100}
             height={100}
           />
@@ -83,45 +83,44 @@ const MenuIcon = () => (
 );
 
 const HeaderElement = ({ link }: { link: NavLink }) => {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const toggleDropdown = (id: string) => {
-    setOpenDropdown((prev) => (prev === id ? null : id));
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isExpanded = openDropdown === link.id;
+  const toggleDropdown = (e: React.MouseEvent) => {
+    // On desktop, we let CSS handle the hover. 
+    // On mobile/touch, this click toggles the state.
+    setIsOpen(!isOpen);
+  };
 
   if (link.subPages) {
     return (
       <li
         key={link.id}
-        className={"has-submenu"}
-        onMouseEnter={() => toggleDropdown(link.id)}
-        onMouseLeave={() => toggleDropdown(link.id)}
-        aria-expanded={isExpanded}
-        aria-controls={`submenu-${link.id}`}
+        className="has-submenu"
+        aria-expanded={isOpen}
       >
         <button
           className="nav-parent"
-          data-isExpanded={isExpanded}
-          onClick={() => toggleDropdown(link.id)}
+          data-isexpanded={isOpen}
+          onClick={toggleDropdown}
         >
           {link.label}
         </button>
-        {isExpanded && (
-          <ul
-            className="submenu"
-            id={`submenu-${link.label.replace(/\s+/g, "")}`}
-          >
-            {link.subPages.map((sub) => (
-              <li key={sub.id}>
-                <a href={sub.href}>{sub.label}</a>
-              </li>
-            ))}
-          </ul>
-        )}
+        {/* We keep the list in the DOM so CSS can show/hide it */}
+        <ul
+          className="submenu"
+          id={`submenu-${link.id}`}
+          data-open={isOpen} // Hook for mobile toggle
+        >
+          {link.subPages.map((sub) => (
+            <li key={sub.id}>
+              <a href={sub.href}>{sub.label}</a>
+            </li>
+          ))}
+        </ul>
       </li>
     );
-  } else {
+  }
+ else {
     return (
       <li>
         <a href={link.href}>{link.label}</a>
