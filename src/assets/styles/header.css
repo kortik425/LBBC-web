@@ -173,14 +173,13 @@
 
   .main-nav ul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 10px;
     width: 100%;
   }
 
   .has-submenu {
     display: block;
-    /* width: 100%; */
   }
 
   .has-submenu::before {
@@ -193,11 +192,12 @@
     padding: 0.5rem 1.5rem;
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start;
   }
 
   .has-submenu > .nav-parent {
     padding-bottom: 0.5rem;
     width: 100%;
-    text-align: left;
+    text-align: right;
   }
 }
