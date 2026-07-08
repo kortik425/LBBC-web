@@ -1,0 +1,157 @@
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.calendar th {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.calendar td {
+    border: 1px solid #ccc;
+    height: 120px;
+    vertical-align: top;
+    padding: 0.5rem;
+}
+
+.calendar td.empty {
+    background: #fafafa;
+}
+
+.calendar-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.day-number {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.event-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    border: none;
+    background: #e9f3ff;
+    color: inherit;
+
+    padding: 0.35rem;
+    border-radius: 0.35rem;
+
+    cursor: pointer;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    transition:
+        background-color 150ms ease;
+}
+
+.event-button:hover {
+    background: #d7ebff;
+}
+
+.event-button:focus-visible,
+.close-button:focus-visible {
+    outline: 2px solid #0b6cff;
+    outline-offset: 2px;
+}
+
+
+/*
+    Popover API
+*/
+
+.event-popover {
+    border: none;
+    border-radius: 12px;
+
+    padding: 1rem;
+
+    width: min(90vw, 360px);
+
+    background: white;
+
+    box-shadow:
+        0 10px 25px rgb(0 0 0 / 0.15),
+        0 3px 8px rgb(0 0 0 / 0.1);
+
+    line-height: 1.5;
+}
+
+.event-popover::backdrop {
+    background: rgb(0 0 0 / 0.15);
+}
+
+.event-popover h3 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.event-popover p {
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+.close-button {
+    border: none;
+    background: var(--navy);
+    color: white;
+
+    padding: 0.45rem 0.8rem;
+    border-radius: 0.35rem;
+
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #0958d8;
+}
+
+
+.mobile {
+    display: none;
+}
+
+.desktop {
+    display: inline;
+}
+
+
+@media (max-width: 640px) {
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: inline;
+    }
+
+    .calendar th {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .calendar td {
+        height: 80px;
+        padding: 0.35rem;
+    }
+
+    .day-number {
+        font-size: 0.9rem;
+    }
+
+    .event-button {
+        font-size: 0.75rem;
+        padding: 0.25rem;
+    }
+}
