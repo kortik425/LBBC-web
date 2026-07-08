@@ -1,0 +1,26 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Calendar from "../components/react/Calendar"; 
+
+// Going to prepare an API with the events for the calendar one day, but for now, just hardcoding it here. 
+const events = {
+  "2026-07-11": "Prayer meeting 16:30 - 17:30",
+  "2026-07-24": "Prayer meeting 18:00 - 19:00",
+  "2026-07-12": "Tagalog service 14:35 - 15:30",
+  "2026-07-19": "Women's service 14:35 - 15:30",
+  "2026-07-26": "After Service Soul winning and Evangelism",
+}
+---
+
+<PageLayout
+  title="Schedules"
+  content=""
+>
+  <section class="schedules-section">
+    <p>We have two services every Sunday, one in the morning and one in the afternoon. Check the calendar for specific dates and times of other services like prayer meetings.</p>
+    <ul>
+      <li>Morning Service: 11:15 - 12:30</li>
+      <li>Afternoon Service: 13:30 - 14:30</li>
+    </ul>
+    <Calendar year={2026} month={7} events={events} client:load/>
+</PageLayout>
