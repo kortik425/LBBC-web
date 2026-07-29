@@ -1,16 +1,15 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import Calendar from "../components/react/Calendar"; 
+import { Temporal } from "@js-temporal/polyfill";
 
-// Going to prepare an API with the events for the calendar one day, but for now, just hardcoding it here. 
-const events = {
-  "2026-08-08": "Prayer meeting 18:00 - 19:00",
-  "2026-08-21": "Prayer meeting 16:30 - 18:00",
-  "2026-08-02": "Tagalog service 14:35 - 15:30",
-  "2026-08-16": "Tagalog service 14:35 - 15:30",
-  "2026-08-23": "Women's service 14:35 - 15:30",
-  "2026-08-30": "After Service Soul winning and Evangelism",
-}
+
+const {events, month} = await fetch("https://events-api.services-a57.workers.dev/events")
+  .then((response) => response.json())
+  .catch((error) => {
+    console.error("Error fetching events:", error);
+    return {events:{}, month:Temporal.Now.plainDateISO().month}; 
+  });
 ---
 
 <PageLayout
@@ -23,5 +22,5 @@ const events = {
       <li>Morning Service: 11:15 - 12:30</li>
       <li>Afternoon Service: 13:30 - 14:30</li>
     </ul>
-    <Calendar year={2026} month={8} events={events} client:load/>
+    <Calendar year={2026} month={month} events={events} client:load/>
 </PageLayout>
