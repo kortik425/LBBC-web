@@ -1,11 +1,12 @@
 import { Temporal } from "@js-temporal/polyfill";
 import "../../assets/styles/calendar.css";
+import { useEffect, useState } from "react";
 
-interface CalendarProps {
-  year?: number;
-  month?: number; // 1-12
-  events?: Record<string, string>;
-}
+// interface CalendarProps {
+//   year?: number;
+//   month?: number; // 1-12
+//   events?: Record<string, string>;
+// }
 
 const weekdays = [
   { full: "Monday", short: "Mon" },
@@ -17,11 +18,25 @@ const weekdays = [
   { full: "Sunday", short: "Sun" },
 ] as const;
 
-export default function Calendar({
-  year = Temporal.Now.plainDateISO().year,
-  month = Temporal.Now.plainDateISO().month,
-  events = {},
-}: CalendarProps) {
+// export default function Calendar({
+//   year = Temporal.Now.plainDateISO().year,
+//   month = Temporal.Now.plainDateISO().month,
+//   events = {},
+// }: CalendarProps) 
+export default function Calendar(){
+  const [events, setEvents] = useState<Record<string, string>>({});
+  const year = Temporal.Now.plainDateISO().year;
+  const [month, setMonth] = useState(Temporal.Now.plainDateISO().month);
+
+  useEffect(() => {
+    fetch("https://events-api.services-a57.workers.dev/events")
+    .then(res => res.json())
+    .then(data => {
+      setEvents(data.events);
+      setMonth(data.month);
+    });
+  }, []);
+
   const firstDay = Temporal.PlainDate.from({
     year,
     month,
